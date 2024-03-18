@@ -22,8 +22,8 @@ namespace Backend.Tests
             var userService = new UserService(userManagerMock.Object, signInManagerMock.Object);
 
 
-            var email = "test2@example.com";
-            var password = "P@ssw0rd";
+            var email = "pier.riv9@gmail.com";
+            var password = "stringPabcd1_";
             var rememberMe = false;
             var signInResult = SignInResult.Failed;
 
@@ -49,8 +49,8 @@ namespace Backend.Tests
 
             var userService = new UserService(userManagerMock.Object, signInManagerMock.Object);
 
-            var email = "test@example.com";
-            var password = "P@ssw0rd";
+            var email = "pier.rivera9@gmail.com";
+            var password = "stringPabcd1_";
             var rememberMe = false;
             var signInResult = SignInResult.Success;
 
@@ -75,7 +75,7 @@ namespace Backend.Tests
 
             var userService = new UserService(userManagerMock.Object, signInManagerMock.Object);
 
-            var result = await userService.RegisterUserAsync("test@example.com", "P@ssw0rd");
+            var result = await userService.RegisterUserAsync("pier.rivera9@gmail.com", "stringPabcd1_");
 
             Assert.True(result.Succeeded);
         }
