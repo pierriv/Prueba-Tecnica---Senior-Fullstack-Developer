@@ -1,0 +1,27 @@
+<div style="width: 70%; margin: 10px auto">
+  <div class="container mt-4 meal-details-container">
+    <div class="row">
+      <div class="col-md-6">
+        <div *ngIf="meal">
+          <img [src]="meal.strMealThumb" alt="{{ meal.strMeal }}" class="img-fluid mb-3">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div *ngIf="meal">
+          <h2>{{ meal.strMeal }}</h2>
+          <p><strong>Category:</strong> {{ meal.strCategory }}</p>
+          <p><strong>Area:</strong> {{ meal.strArea }}</p>
+          <p><strong>Instructions:</strong> {{ meal.strInstructions }}</p>
+          <p><strong>Tags:</strong> {{ meal.strTags }}</p>          
+        </div>
+        <div *ngIf="!meal">
+          <p></p>
+          <p>{{message}}</p>
+        </div>
+      </div>
+      <div class="col-md-3 text-center">
+        <button class="btn btn-primary" (click)="goBack()">Regresar al inicio</button>
+      </div>
+    </div>
+  </div>  
+</div>

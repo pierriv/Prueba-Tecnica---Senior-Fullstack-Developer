@@ -1,0 +1,13 @@
+  .meal-details-container {
+    background-color: #f8f9fa; /* Color de fondo */
+    border: 1px solid #d66929; /* Borde */
+    padding: 15px; /* Espacio interno */
+    border-radius: 20px;
+  }
+  
+  .loading-container {
+    background-color: #f8f9fa; /* Color de fondo */
+    border: 1px solid #ced4da; /* Borde */
+    padding: 15px; /* Espacio interno */
+  }
+  
