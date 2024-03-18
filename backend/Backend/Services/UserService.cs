@@ -26,7 +26,7 @@ namespace Backend.Services
                 await _signInManager.SignInAsync(user, isPersistent: false);
                 var emailService = new EmailService();
                 var emailJob = new EmailJob(emailService);
-                BackgroundJob.Enqueue(() => emailJob.SendEmail("pier.rivera9@gmail.com", "Registro exitoso", "Registro del usuario en el app"));
+                BackgroundJob.Enqueue(() => emailJob.SendEmail(email, "Registro exitoso", "Registro del usuario en el app"));
             }
             return result;
         }

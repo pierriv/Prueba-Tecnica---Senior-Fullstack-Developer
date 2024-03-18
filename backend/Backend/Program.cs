@@ -6,7 +6,16 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", app =>
+    {
+        app.AllowAnyOrigin()
+        .AllowAnyHeader()
+        .WithOrigins("http://localhost")
+        .AllowCredentials();
+    });
+});
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseInMemoryDatabase("MyInMemoryDatabase"));
 
@@ -44,6 +53,7 @@ builder.Services.AddHangfireServer();
 builder.Services.AddScoped<EmailService>();
 builder.Services.AddScoped<UserService>();
 builder.Services.AddControllers();
+
 builder.Services.AddSignalR();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -62,6 +72,13 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-app.MapControllers();
+app.UseCors("AllowAll");
+app.UseRouting();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers(); // Mapea los controladores de la aplicación
+    endpoints.MapHub<NotificationHub>("/notificationHub"); // Mapea el concentrador de SignalR
+});
 
 app.Run();

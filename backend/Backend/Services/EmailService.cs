@@ -11,7 +11,6 @@ namespace Backend.Services
             var toAddress = new MailAddress(to);
             const string fromPassword = "zcmq kpka tvwm fbpv";
 
-            // Configurar el cliente SMTP de Gmail
             var smtp = new SmtpClient
             {
                 Host = "smtp.gmail.com",
@@ -22,7 +21,6 @@ namespace Backend.Services
                 Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
             };
 
-            // Crear el mensaje de correo electrónico
             var message = new MailMessage(fromAddress, toAddress)
             {
                 Subject = subject,
@@ -31,7 +29,6 @@ namespace Backend.Services
 
             try
             {
-                // Enviar el correo electrónico
                 smtp.Send(message);
                 Console.WriteLine("Correo electrónico enviado con éxito.");
             }
