@@ -23,7 +23,7 @@ namespace Backend.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await _userService.RegisterUserAsync(model.Email, model.Password);
+                var result = await _userService.RegisterUserAsyncAndEnvioEmail(model.Email, model.Password);
                 if (result.Succeeded)
                 {                   
                     await _hubContext.Clients.All.SendAsync("ReceiveNotification", $"Nuevo usuario registrado: {model.Email}");

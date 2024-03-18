@@ -17,6 +17,25 @@ namespace Backend.Services
             _signInManager = signInManager;
         }
 
+        public async Task<IdentityResult> RegisterUserAsyncAndEnvioEmail(string email, string password)
+        {
+            var user = new ApplicationUser { UserName = email, Email = email };
+            var result = await _userManager.CreateAsync(user, password);
+            if (result.Succeeded)
+            {
+                await _signInManager.SignInAsync(user, isPersistent: false);
+                EnvioEmail(email, password);
+            }
+            return result;
+        }
+
+        public void EnvioEmail(string email, string password)
+        {
+            var emailService = new EmailService();
+            var emailJob = new EmailJob(emailService);
+            BackgroundJob.Enqueue(() => emailJob.SendEmail(email, "Registro exitoso", "Registro del usuario en el app"));
+        }
+
         public async Task<IdentityResult> RegisterUserAsync(string email, string password)
         {
             var user = new ApplicationUser { UserName = email, Email = email };
@@ -24,9 +43,6 @@ namespace Backend.Services
             if (result.Succeeded)
             {
                 await _signInManager.SignInAsync(user, isPersistent: false);
-                var emailService = new EmailService();
-                var emailJob = new EmailJob(emailService);
-                BackgroundJob.Enqueue(() => emailJob.SendEmail(email, "Registro exitoso", "Registro del usuario en el app"));
             }
             return result;
         }
