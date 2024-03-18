@@ -1,17 +1,14 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MealSearchComponent } from './pages/meal-search/meal-search.component';
 import { MealSearchModule } from './pages/meal.module';
 import { MealService } from './core/services/meal.service';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    
+    AppComponent,    
   ],
   imports: [
     BrowserModule,

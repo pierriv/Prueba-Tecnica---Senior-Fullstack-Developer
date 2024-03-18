@@ -3,12 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Meal } from '../models/meal.model';
 import { Category } from '../models/category.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MealService {
-  private apiUrl = 'https://www.themealdb.com/api/json/v1/1';
+  public apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 

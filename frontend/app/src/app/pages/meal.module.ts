@@ -8,7 +8,12 @@ import { RouterModule } from '@angular/router';
 import { SearchHistoryComponent } from './search-history/search-history.component';
 
 @NgModule({
-  declarations: [MealSearchComponent, MealDetailComponent, MealListComponent, SearchHistoryComponent],
+  declarations: [
+    MealSearchComponent, 
+    MealDetailComponent, 
+    MealListComponent, 
+    SearchHistoryComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,

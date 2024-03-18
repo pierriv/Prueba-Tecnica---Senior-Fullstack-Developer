@@ -1,11 +1,10 @@
 ﻿using Backend.Jobs;
 using Backend.Models;
 using Hangfire;
-using System;
 using Microsoft.AspNetCore.Identity;
 
 namespace Backend.Services
-{    
+{
     public class UserService
     {
         private readonly UserManager<ApplicationUser> _userManager;

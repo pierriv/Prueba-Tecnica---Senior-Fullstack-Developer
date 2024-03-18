@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notification Example</title>
-    <!-- Agrega la referencia a la biblioteca de SignalR -->
+    <title>Notificaciones</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.8/signalr.min.js"></script>
     <style>
         body {
@@ -35,31 +34,27 @@
 </head>
 <body>
     <div class="container">
-        <h1>Notification Example</h1>
+        <h1>Notificaciones</h1>
         <p>Esperando notificaciones...</p>
         <div class="notification"></div>
     </div>
 
     <script>
-        // Crea una conexión a tu concentrador de SignalR
+        
         const connection = new signalR.HubConnectionBuilder()
             .withUrl("https://localhost:7054/notificationHub") // El URL del concentrador de SignalR
             .build();
-
-        // Configura el evento para recibir notificaciones
-        connection.on("ReceiveNotification", function (message) {
-            // Muestra la notificación en un div en lugar de una alerta
+        
+        connection.on("ReceiveNotification", function (message) {            
             const notificationDiv = document.querySelector('.notification');
             notificationDiv.textContent = message;
             notificationDiv.style.display = 'block';
-
-            // Después de 5 segundos, oculta la notificación
+            
             setTimeout(() => {
                 notificationDiv.style.display = 'none';
             }, 5000);
         });
-
-        // Inicia la conexión
+        
         connection.start()
             .then(() => {
                 console.log("Conexión establecida con el servidor SignalR");

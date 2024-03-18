@@ -35,6 +35,9 @@ export class MealDetailComponent implements OnInit {
           this.message = "No se encontró el patillo";
         }
       } 
+    },
+    error => {
+      console.error('Error consulta detalle platillo:', error);
     });
   }
 

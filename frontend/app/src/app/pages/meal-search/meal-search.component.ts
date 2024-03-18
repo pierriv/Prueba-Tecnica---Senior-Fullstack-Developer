@@ -37,6 +37,9 @@ export class MealSearchComponent implements OnInit{
   loadCategories() {
     this.mealService.getCategories().subscribe(categories => {
       this.categories = categories.categories;
+    },
+    error => {
+      console.error('Error consulta de categorias:', error);
     });
   }
 
@@ -62,6 +65,9 @@ export class MealSearchComponent implements OnInit{
         this.searchResults = meals.meals;
       else 
         this.searchResults = [];
+    },
+    error => {
+      console.error('Error consulta de platillos:', error);
     });
     if (save)
       this.saveSearch(this.searchTerm, 1);
@@ -75,9 +81,12 @@ export class MealSearchComponent implements OnInit{
         this.searchResults.forEach(meal => {
           meal.strCategory = this.selectedCategory;
         });
-      }        
+      }
       else 
         this.searchResults = [];
+    },
+    error => {
+      console.error('Error consulta de platillos:', error);
     });
     if (save)
       this.saveSearch(this.selectedCategory, 2);
